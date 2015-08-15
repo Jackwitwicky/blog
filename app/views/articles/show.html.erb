@@ -1,0 +1,39 @@
+<p>
+  <h1><%= @article.title %></h1>
+</p>
+
+<div class="post">
+    <div class="col-md-8 col-md-push-2">
+        <p>
+          <%= @article.text %>
+        </p>
+    </div>
+</div>
+
+<p>
+<h2>Comments</h2>
+</p>
+
+<% if @article.comments.any? %>
+    <%= render @article.comments %>
+<% else %>
+    <p>
+      <strong>No Comments. Be the first to comment below.</strong>
+    </p>
+<% end %>
+
+<h2>Add Comment</h2>
+
+
+<%= render 'comments/form' %>
+
+<% if admin_logged_in? %>
+    <p>
+      <%= link_to 'Edit Article', edit_article_path(@article), class: "btn btn-primary" %>
+    </p>
+<% end %>
+
+<p>
+  <%= link_to 'Back to Articles', articles_path, class: "btn btn-primary" %>
+</p>
+

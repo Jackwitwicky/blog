@@ -1,0 +1,63 @@
+<div class="center jumbotron">
+  <p>
+    <h1>Welcome To My Blog!</h1>
+  </p>
+  <p>
+    <h3>
+      <span class="text-danger"><strong>BE WARNED</strong></span> It's adviced you know when to stop.<br>
+      Because yes, the articles are that good :). Have fun!
+    </h3>
+  </p>
+</div>
+
+
+<% counter = 1 %>
+
+<% @articles.each do |article| %>
+    <hr class="featurette-divider">
+
+    <% if (counter%2) != 0 %>
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading"><%= article.title %></h2>
+            <p class="lead"><%= article.text %></p>
+            <p>
+              <%= link_to 'Read more', article_path(article), class: "btn btn-default" %>
+            </p>
+          </div>
+          <div class="col-md-5">
+            <img class="featurette-image img-responsive center-block" data-src="", alt="Generic image placeholder">
+          </div>
+        </div>
+
+    <% else %>
+        <div class="row featurette">
+          <div class="col-md-7 col-md-push-5">
+            <h2 class="featurette-heading"><%= article.title %></h2>
+            <p class="lead"><%= article.text %></p>
+            <p>
+              <%= link_to 'Read more', article_path(article), class: "btn btn-default" %>
+            </p>
+          </div>
+
+          <div class="col-md-5 col-md-pull-7">
+            <img class="featurette-image img-responsive center-block" data-src="..." alt="Generic image placeholder",
+            class="img-rounded">
+          </div>
+        </div>
+    <% end %>
+
+    <% counter +=1 %>
+<% end %>
+
+<hr class="featurette-divider">
+
+<div class="row">
+  <div class="col-md-6">
+    <%= link_to 'Home Page', root_path, class: "btn btn-primary" %>
+  </div>
+
+  <div>
+    <%= link_to 'Back to Top', "#", class: "btn btn-primary" %>
+  </div>
+</div>

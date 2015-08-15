@@ -1,0 +1,50 @@
+<%= form_for([@article, @article.comments.build]) do |f| %>
+    <% if @article.errors.any? %>
+        <div id="error_explanation">
+          <p>
+          <h3>
+            <%= pluralize(@article.comments.errors.count, "error") %>
+            prevented your comment from being posted.
+          </h3>
+          </p>
+
+          <ul>
+            <% @article.comments.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <% if logged_in? %>
+        <div class="row">
+          <p>
+            <%= f.label :user %><br>
+            <span class="form-control-static"><%= @current_user.name %></span>
+          </p>
+
+          <div class="col-md-12">
+            <p class="col-md-6">
+              <%= f.label :body %><br>
+              <%= f.text_area :body, class: 'form-control', rows: "4" %>
+            </p>
+          </div>
+
+          <p>
+            <%= f.submit %>
+          </p>
+        </div>
+    <% else %>
+        <p class="login-comment">
+          <div class="col-md-12">
+            <div class="col-md-6">
+              <div class="alert alert-info">
+                Please login before you can comment.
+                We promise it will only take a second.(Apologies for the inconvenience)
+              </div>
+            </div>
+          </div>
+        </p>
+
+    <% end %>
+<% end %>
